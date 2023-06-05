@@ -3,9 +3,9 @@ import logo from '../assets/images/logo.svg'
 import navbarLinks from '../links/links'
 
 const Navbar = () => {
-  const [hidden, setHidden] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
   const displayHamburger = () => {
-    setHidden(!hidden)
+    setShowMenu(!showMenu)
   }
   return (
     <div id='navbar'>
@@ -21,25 +21,25 @@ const Navbar = () => {
               </div>
             ))}
           </div>
-          <div className='md:hidden' id='menu-btn'>
+          <div className='md:hidden'>
             <button
               className='z-40 block hamburger md:hidden focus:outline-none'
               type='button'
               onClick={displayHamburger}
             >
-              <span className={`hamburger-top ${!hidden && 'open'}`}></span>
+              <span className={`hamburger-top ${showMenu && 'open'}`}></span>
               <span
-                className={`hamburger-middle ${!hidden && 'hidden'}`}
+                className={`hamburger-middle ${showMenu && 'hidden'}`}
               ></span>
-              <span className={`hamburger-bottom ${!hidden && 'open'}`}></span>
+              <span className={`hamburger-bottom ${showMenu && 'open'}`}></span>
             </button>
           </div>
         </nav>
 
-        {!hidden && (
+        {showMenu && (
           <div
             id='menu'
-            className='absolute  top-0 bottom-0 left-0 flex-col self-end  w-full mih-h-screen py-1 pt-40 pl-12 space-y-3 text-lg text-white uppercase bg-black'
+            className='absolute  top-0 bottom-0 left-0 flex-col self-end  w-full mih-h-screen py-1 pt-40 pl-12 space-y-3 text-lg text-white uppercase bg-black md:hidden'
           >
             {navbarLinks.map((links, index) => (
               <div key={index} className='hover:text-pink-50'>
